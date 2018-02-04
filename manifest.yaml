@@ -18,9 +18,6 @@ spec:
       - name: node-echo-service
         image: diversario/node-echo-service:latest
         imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
-          name: echo
 ---
 kind: Service
 apiVersion: v1
@@ -30,7 +27,11 @@ spec:
   selector:
     app: node-echo-service
   ports:
-  - protocol: HTTP
+  - protocol: TCP
     name: echo
     port: 2000
     targetPort: 3000
+  - protocol: TCP
+    name: extra
+    port: 3000
+    targetPort: 4000
