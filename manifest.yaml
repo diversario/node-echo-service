@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: node-echo-service-deployment
+  labels:
+    app: node-echo-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: node-echo-service
+  template:
+    metadata:
+      labels:
+        app: node-echo-service
+    spec:
+      containers:
+      - name: node-echo-service
+        image: diversario/node-echo-service:latest
+        ports:
+        - containerPort: 3000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-echo-service-service
+spec:
+  selector:
+    app: node-echo-service
+  ports:
+  - protocol: HTTP
+    port: 2000
+    targetPort: 3000
