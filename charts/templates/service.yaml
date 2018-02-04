@@ -1,0 +1,20 @@
+{{- if .Values.agent.key }}
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.appName }}
+  labels:
+    agent: {{ .Values.appName }}
+spec:
+  selector:
+    app: {{ .Values.appName }}
+  ports:
+  - protocol: TCP
+    name: echo
+    port: 2000
+    targetPort: 3000
+  - protocol: TCP
+    name: extra
+    port: 3000
+    targetPort: 4000
+{{- end }}
