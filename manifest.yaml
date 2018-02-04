@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: node-echo-service-deployment
+  name: node-echo-service
   labels:
     app: node-echo-service
 spec:
@@ -17,17 +17,20 @@ spec:
       containers:
       - name: node-echo-service
         image: diversario/node-echo-service:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
+          name: echo
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: node-echo-service-service
+  name: node-echo-service
 spec:
   selector:
     app: node-echo-service
   ports:
   - protocol: HTTP
+    name: echo
     port: 2000
     targetPort: 3000
