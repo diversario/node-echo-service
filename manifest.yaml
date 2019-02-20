@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: node-echo-service
-        image: diversario/node-echo-service:latest
+        image: diversario/node-echo-service:1.0.0
         imagePullPolicy: Always
 ---
 kind: Service
@@ -35,3 +35,7 @@ spec:
     name: extra
     port: 3000
     targetPort: 4000
+  - protocol: TCP
+    name: file
+    port: 4000
+    targetPort: 5000

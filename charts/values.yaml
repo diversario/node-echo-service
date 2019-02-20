@@ -1,5 +1,2 @@
 appName: app-name-from-values
 image: diversario/node-echo-service:latest
-
-agent:
-  key:
