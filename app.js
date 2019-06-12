@@ -18,7 +18,7 @@ Object.keys(interfaces).forEach(iface => {
 
 http.createServer(function(req, res) {
   res.end(`${JSON.stringify({ name: 'echo', id: id, time: new Date(), ifs: interfaces })}\n`)
-}).listen(3000)
+}).listen(process.env.PORT)
 
 
 http.createServer(function(req, res) {
